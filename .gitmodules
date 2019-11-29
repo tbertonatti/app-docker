@@ -1,8 +1,6 @@
-[submodule "snomed-interaction-components-dev"]
-	path = snomed-interaction-components-dev
-	url = https://tbertonatti@bitbucket.org/termmed/snomed-interaction-components-dev.git
-	branch = TS-refactor
-[submodule "sct-dev-rest-api"]
-	path = sct-dev-rest-api
-	url = https://tbertonatti@bitbucket.org/termmed/sct-dev-rest-api.git
-	branch = TS-refactor
+[submodule "angular-web-elements"]
+	path = angular-web-elements
+	url = https://github.com/tbertonatti/angular-web-elements.git
+[submodule "mini-nodejs-express-api"]
+	path = mini-nodejs-express-api
+	url = https://github.com/tbertonatti/mini-nodejs-express-api.git
