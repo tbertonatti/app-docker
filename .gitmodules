@@ -1,0 +1,8 @@
+[submodule "snomed-interaction-components-dev"]
+	path = snomed-interaction-components-dev
+	url = https://tbertonatti@bitbucket.org/termmed/snomed-interaction-components-dev.git
+	branch = TS-refactor
+[submodule "sct-dev-rest-api"]
+	path = sct-dev-rest-api
+	url = https://tbertonatti@bitbucket.org/termmed/sct-dev-rest-api.git
+	branch = TS-refactor
