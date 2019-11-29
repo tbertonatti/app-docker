@@ -1,0 +1,38 @@
+version: '1'
+services:
+
+  mongo:
+    image: mongo:3.6
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    mem_limit: 2048m
+
+
+
+  backend:
+    build:
+      context: ./sct-dev-rest-api
+    image: termmed/sct-rest-api:1
+    environment:
+      - TS_MONGO_SERVER=mongo
+      - TS_MONGO_PORT=27017
+      - TS_MONGO_REMOTE_ACCESS=ar-prod-main.termspace.com
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./snomed-interaction-components-dev
+    image: termmed/snomed-interaction-components:1
+    ports:
+      - "9090:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
+    external: true
