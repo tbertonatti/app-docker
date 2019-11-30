@@ -1,0 +1,23 @@
+sudo apt-get update 
+sudo apt-get install npm -y 
+sudo apt-get install mongodb -y 
+sudo service mongodb restart 
+sudo apt install nginx -y 
+sudo npm -g install static-server 
+sudo npm cache clean -f 
+sudo npm install -g n 
+sudo n stable
+sudo nano /etc/nginx/sites-enabled/default
+            location /api/ {
+                if ($http_origin ~* (https?://(.+\.)?(localhost|(testing.termspace|domain2|domain3)\.(?:me|co|com))(:[0-9]+)?$) ) {
+                        add_header "Access-Control-Allow-Origin" "$http_origin" always;
+                    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;                        add_header 'Access-Control-Allow-Credentials' 'true' always;
+                }
+                rewrite  ^/api/(.*)  /$1 break;
+                proxy_pass http://127.0.0.1:8000;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+            }
+sudo service nginx restart
