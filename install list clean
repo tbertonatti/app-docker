@@ -4,6 +4,7 @@ sudo apt-get install mongodb -y
 sudo service mongodb restart 
 sudo apt install nginx -y 
 sudo npm -g install static-server 
+sudo npm -g install @angular/cli
 sudo npm cache clean -f 
 sudo npm install -g n 
 sudo n stable
