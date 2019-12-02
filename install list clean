@@ -2,6 +2,8 @@ sudo apt-get update
 sudo apt-get install npm -y 
 sudo apt-get install mongodb -y 
 sudo service mongodb restart 
+sudo apt install redis-server -y
+sudo service redis-server restart
 sudo apt install nginx -y 
 sudo npm -g install static-server 
 sudo npm -g install @angular/cli

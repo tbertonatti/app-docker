@@ -1,36 +1,28 @@
-version: '2'
+version: "3"
 services:
-
+  frontend:
+    build: ./angular-web-elements
+  backend:
+    build: ./mini-nodejs-express-api
+    environment:
+      MONGO_SERVER: "mongo:27017"
+      MONGO_PORT: ""
+      APP_PORT: "8000"
+      REDIS_HOST: "redis"
+    ports:
+      - 3000:8000
+    links:
+      - mongo
+      - redis
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx-sites.conf:/etc/nginx/sites-enabled/default
   mongo:
     image: mongo
+    ports:
+      - 27017:27017
     volumes:
-      - mongo_data:/data/db
-    ports:
-      - "27017:27017"
-    mem_limit: 1024m
-
-  backend:
-    build:
-      context: ./mini-nodejs-express-api
-    image: rertyk/rest-api:1
-    environment:
-      - TS_MONGO_SERVER=mongo
-      - TS_MONGO_PORT=27017
-      - TS_MONGO_REMOTE_ACCESS=ar-prod-main.termspace.com
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongo
-
-  frontend:
-    build:
-      context: ./angular-web-elements
-    image: rertyk/frontend:1
-    ports:
-      - "9090:80"
-    depends_on:
-      - backend
-
-volumes:
-  mongo_data:
-    external: true
+      - /var/lib/mongodb:/data/db/
+  redis:
+    image: redis

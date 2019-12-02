@@ -3,10 +3,13 @@ help:
 
 submodules: ## Instala los submodulos de git, bajando y actualizando desde los repositorios
 	git submodule init
-	git submodule update
+	git submodule update --recursive --remote
 
-build: ## Genera las imagenes de docker para ejecutar los contenedores adecuados
+build: ## Genera las imagenes de docker
 	docker-compose build
+
+docker: ## Genera y corre las imagenes de docker
+	docker-compose up --build -d
 
 all: submodules build ## Realiza "submodules" -> "build" en ese orden.
 
